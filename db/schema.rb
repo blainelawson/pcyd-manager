@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190604135006) do
+ActiveRecord::Schema.define(version: 20190604164531) do
+
+  create_table "board_members", force: :cascade do |t|
+    t.string  "name"
+    t.string  "email"
+    t.integer "phone"
+    t.string  "password_digest"
+    t.string  "title"
+  end
 
   create_table "committee_members", force: :cascade do |t|
     t.integer "committee_id"

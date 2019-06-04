@@ -1,4 +1,4 @@
 class CommitteeMembers < ActiveRecord::Base
-  has_many :committees
-  has_many :members
+  belongs_to :committees
+  belongs_to :members
 end

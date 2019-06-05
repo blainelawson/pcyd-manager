@@ -1,0 +1,9 @@
+<form method="post" action="/board-members/<%=@user.slug%>">
+  <input type="hidden" name="_method" id="hidden" value="patch">
+  <p><label for="name">Name: </label><input type="text" name="board_member[name]" id="name" value="<%=@user.name%>"></p>
+  <p><label for="email">Email: </label><input type="text" name="board_member[email]" id="email" value="<%=@user.email%>"></p>
+  <p><label for="phone">Phone: </label><input type="tel" name="board_member[phone]" id="phone"
+                                              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<%=@user.phone%>"></p>
+  <p><label for="title">Title: </label><input type="text" name="board_member[title]" id="title" value="<%=@user.title%>"></p>
+  <input type="submit" id="Save Changes" value="Save Changes">
+</form>

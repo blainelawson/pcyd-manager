@@ -1,0 +1,19 @@
+<h1>Welcome, <%=@user.name%></h1>
+<h2><%=@user.title%></h2>
+
+<div>
+<h3>Contact Info</h3>
+<ul style="list-style-type:none;">
+<li>E-mail: <%=@user.email%></li>
+<li>Phone: <%=@user.phone%></li>
+<a href="/board-members/<%=@user.slug%>/edit">edit</a>
+</div>
+<br>
+<div>
+<h3>Your Committees</h3>
+<ul>
+<%@user.committees.each do |committee|%>
+    <li><a href="/committees/:id"><%=committee.name%></a></li>
+<%end%>
+</ul>
+</div>

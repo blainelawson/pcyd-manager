@@ -1,5 +1,9 @@
 class BoardMember < ActiveRecord::Base
   has_many :committees
+  validates :name, presence: true
+  validates :phone, presence: true
+  validates :email, presence: true
+  validates :password, presence: true
   has_secure_password
 
   def slug

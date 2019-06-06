@@ -10,15 +10,23 @@ class CommitteeController < ApplicationController
   end
 
   get '/committees/:slug/edit' do
-    @committee = Committee.find_by_slug(params[:slug])
-    @members = Member.all
-    erb :'/committees/edit_committee'
+    if logged_in? && current_user == Committee.find_by_slug(params[:slug]).board_member
+      @committee = Committee.find_by_slug(params[:slug])
+      @members = Member.all
+      erb :'/committees/edit_committee'
+    else
+      redirect "/committees"
+    end
   end
 
   patch '/committees/:slug' do
-    committee = Committee.find_by_slug(params[:slug])
-    committee.member_ids = params[:members]
-    committee.save
-    redirect "/committees/#{params[:slug]}"
+    if logged_in? && current_user == Committee.find_by_slug(params[:slug]).board_member
+      committee = Committee.find_by_slug(params[:slug])
+      committee.member_ids = params[:members]
+      committee.save
+      redirect "/committees/#{params[:slug]}"
+    else
+      redirect '/committees'
+    end
   end
 end

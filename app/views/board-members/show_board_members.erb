@@ -1,0 +1,10 @@
+<h2>Board Members</h2>
+<%@board_members.each do |board_member|%>
+  <p>
+    <ul class="contact">
+      <li><%=board_member.name%> | <%=board_member.title%></li>
+      <li>Phone: <%=board_member.phone%></li>
+      <li>E-mail: <%=board_member.email%></li>
+    </ul>
+  </p>
+<%end%>

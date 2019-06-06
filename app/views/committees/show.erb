@@ -1,0 +1,11 @@
+<h2>Committees</h2>
+
+<%@committees.each do |committee|%>
+  <p>
+  <h3><%=committee.name%><a href="/committees/:slug/edit" class="edit">edit</a></h3>
+  <ul style="list-style-type:none;">
+  <%committee.members.each do |member|%>
+    <li><a href="/members/#{member.slug}"><%=member.name%></a></li>
+  <%end%>
+</p>
+<%end%>

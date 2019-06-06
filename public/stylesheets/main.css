@@ -10,7 +10,64 @@
     width: 100%;
   }
 
+  .edit {
+    font-size: 9pt;
+  }
+
+  ul.contact {
+    list-style: none;
+  }
+
+  ul.contact li:first-child {
+    font-weight: bold;
+  }
+
+  /* --- NAV Bar --- */
+
+  ul.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #191C80;
+  }
+
+  li.navbar {
+    float: left;
+  }
+
+  img.navbar {
+    height: 50px;
+    float: right;
+  }
+
+  a.logout {
+    background-color: #191C80;
+    color: white;
+    float: right;
+  }
+
+  li.navbar a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  /* Change the link color to #111 (black) on hover */
+  li.navbar a:hover {
+    background-color: #B9BAD9;
+  }
+
   /* --- Welcome Page Styles --- */
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
   body {
     background-color: lightblue;
     color: #333;
@@ -62,7 +119,7 @@
   .sidebar {
     background: #eee;
     border: 1px solid #ccc;
-    float: right;
+    float: left;
     padding: 2.08333333333%; /* 5px / 240px */
     width: 30%; /* 240px / 800px */
   }

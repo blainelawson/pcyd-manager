@@ -1,0 +1,20 @@
+<h1>Welcome, <%=@user.name%></h1>
+<h2><%=@user.title%></h2>
+
+<div>
+  <h3>Contact Info  <a href="/board-members/<%=@user.slug%>/edit" class="edit">edit</a></h3>
+  <ul style="list-style-type:none;">
+    <li>E-mail: <%=@user.email%></li>
+    <li>Phone: <%=@user.phone%></li>
+  </ul>
+
+</div>
+<br>
+<div>
+  <h3>Your Committees  <a href="/board-members/<%=@user.slug%>/edit-committees" class="edit">edit</a></h3>
+  <ul>
+    <%@user.committees.each do |committee|%>
+        <li><a href="/committees/<%=committee.slug%>"><%=committee.name%></a></li>
+    <%end%>
+  </ul>
+</div>

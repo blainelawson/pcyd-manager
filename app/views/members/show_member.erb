@@ -9,7 +9,11 @@
 <br>
 <h3>Committees</h3>
 <ul>
-  <%@member.committees.each do |committee|%>
-    <li><%=committee.name%></li>
+  <%if @member.committees.empty? %>
+    None
+  <%else%>
+    <%@member.committees.each do |committee|%>
+      <li><%=committee.name%></li>
+    <%end%>
   <%end%>
 </ul>

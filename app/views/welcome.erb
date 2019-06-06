@@ -5,7 +5,13 @@
 
     <div class="content">
       <p>Welcome to Pinellas County Young Dems!</p>
-      <p><a href="/login">Log-in</a> or <a href="/signup">Sign-up</a></p>
+      <p>
+        <%if !logged_in?%>
+          <a href="/login">Log-in</a> or <a href="/signup">Sign-up</a>
+        <%else%>
+          Hey there, <%=current_user.name%>
+        <%end%>
+      </p>
     </div>
 
 

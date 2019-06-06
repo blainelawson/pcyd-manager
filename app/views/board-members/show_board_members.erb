@@ -2,7 +2,10 @@
 <%@board_members.each do |board_member|%>
   <p>
     <ul class="contact">
-      <li><%=board_member.name%> | <%=board_member.title%></li>
+      <li>
+        <%if current_user == board_member%>
+            <a href="/board-members/<%=board_member.slug%>"><%end%><%=board_member.name%> | <%=board_member.title%></a>
+      </li>
       <li>Phone: <%=board_member.phone%></li>
       <li>E-mail: <%=board_member.email%></li>
     </ul>

@@ -65,8 +65,13 @@ class BoardMemberController < ApplicationController
 
   patch '/board-members/:slug' do
     user = BoardMember.find_by_slug(params[:slug])
-    user.update(params[:board_member])
-    redirect "/board-members/#{user.slug}"
+
+    if logged_in? && user.authenticate(params[:board_member][:password])
+      user.update(params[:board_member])
+      redirect "/board-members/#{user.slug}"
+    else
+      redirect "/board-members/#{params[:slug]/edit}"
+    end
   end
 
   get '/board-members/:slug/edit-committees' do

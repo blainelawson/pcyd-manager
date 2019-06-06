@@ -11,7 +11,7 @@ class BoardMemberController < ApplicationController
       session[:user_id] = @user.id
 
       if logged_in?
-        redirect "/board_member/#{@user.slug}"
+        redirect "/board-members/#{@user.slug}"
       else
         redirect '/signup'
       end

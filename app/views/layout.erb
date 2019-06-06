@@ -15,13 +15,20 @@
   </head>
   <body>
     <ul class="navbar">
-      <img src="/images/PCYD_logo.png" class="navbar">
       <li class="navbar"><a href="/" class="navbar">Home</a></li>
       <li class="navbar"><a href="/board-members" class="navbar">Board Members</a></li>
       <li class="navbar"><a href="/committees" class="navbar">Committees</a></li>
+      <li class="navbar"><a href="/members" class="navbar">Members</a></li>
+      <%if logged_in?%>
+      <a href="/logout" class="logout">Log-out</a>
+      <%else%>
+      <a href="/login" class="logout">Log-in</a>
+      <%end%>
+      <img src="/images/PCYD_logo.png" class="navbar">
     </ul>
-    <a href="/logout" class="logout">Log-out</a>
+
     <div class="wrapper">
+
 
 
         <%= yield %>

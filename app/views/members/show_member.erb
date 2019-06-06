@@ -1,0 +1,15 @@
+<h2>Member</h2>
+
+<ul class="contact">
+  <li><%=@member.name%> <a href="/members/<%=@member.slug%>/edit" class="edit">edit</a></li>
+  <li><%=@member.phone%></li>
+  <li><%=@member.email%></li>
+  <li><%=@member.address%></li>
+</ul>
+<br>
+<h3>Committees</h3>
+<ul>
+  <%@member.committees.each do |committee|%>
+    <li><%=committee.name%></li>
+  <%end%>
+</ul>

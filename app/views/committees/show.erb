@@ -2,10 +2,11 @@
 
 <%@committees.each do |committee|%>
   <p>
-  <h3><%=committee.name%><a href="/committees/:slug/edit" class="edit">edit</a></h3>
+  <h3><%=committee.name%> <%if logged_in? && current_user == committee.board_member%><a href="/committees/<%=committee.slug%>/edit" class="edit">edit</a><%end%></h3>
+  <h4>Chair: <%if committee.board_member%><%=committee.board_member.name%><%else%>Position empty<%end%></h4>
   <ul style="list-style-type:none;">
   <%committee.members.each do |member|%>
-    <li><a href="/members/#{member.slug}"><%=member.name%></a></li>
+    <li><%if logged_in?%><a href="/members/<%=member.slug%>"><%end%><%=member.name%></a></li>
   <%end%>
 </p>
 <%end%>

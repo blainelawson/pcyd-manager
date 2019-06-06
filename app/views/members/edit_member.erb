@@ -1,0 +1,8 @@
+<form method="post" action="/members/<%=@member.slug%>">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <p><label for="name">Name: </label><input type="text" name="member[name]" id="name" value="<%=@member.name%>">
+  <p><label for="phone">Phone: </label><input type="tel" name="member[phone]" id="phone" value="<%=@member.phone%>"> (format 123-456-7890)</p>
+  <p><label for="email">E-mail: </label><input type="text" name="member[email]" id="email" value="<%=@member.email%>"></p>
+  <p><label for="address">Address: </label><input type="text" name="member[address]" id="address" value="<%=@member.address%>"></p>
+  <input type="submit" id="Edit Member" value="Edit Member">
+</form>

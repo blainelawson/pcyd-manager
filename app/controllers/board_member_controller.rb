@@ -60,7 +60,6 @@ class BoardMemberController < ApplicationController
   end
 
   patch '/board-members/:slug/committees' do
-    binding.pry
     user = BoardMember.find_by_slug(params[:slug])
     user.committee_ids = params[:committees]
 
@@ -71,19 +70,9 @@ class BoardMemberController < ApplicationController
 
     user.save
     redirect "/board-members/#{user.slug}"
-    # binding.pry
   end
 
 
 
-  helpers do
-    def current_user
-      BoardMember.find_by_id(session[:user_id])
-    end
-
-    def logged_in?
-      !!session[:user_id]
-    end
-  end
 
 end

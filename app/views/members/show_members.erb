@@ -1,0 +1,6 @@
+<h2>Our Members</h2>
+<ul style="list-style-type:none;">
+  <%@members.sort_by{|k| k[:name]}.each do |member|%>
+    <li><%if logged_in?%><a href="/members/<%=member.slug%>"><%end%><%=member.name%></li>
+  <%end%>
+</ul>

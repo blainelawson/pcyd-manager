@@ -1,0 +1,10 @@
+<h1><%=@committee.name%></h1>
+<form method="post" action="/committees/<%=@committee.slug%>">
+  <input type="hidden" name="_method" id="hidden" value="patch">
+  <%@members.all.each do |member|%>
+    <p>
+      <input type="checkbox" name="members[]" id="<%=member.name%>" value="<%=member.id%>" <%if @committee.member_ids.include?(member.id)%>checked<%end%>><%=member.name%></input>
+    </p>
+  <%end%>
+  <input type="submit" id="Update Committee" value="Update Committee">
+</form>

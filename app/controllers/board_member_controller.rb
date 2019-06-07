@@ -1,4 +1,9 @@
+require 'sinatra/flash'
+require 'sinatra/base'
+
 class BoardMemberController < ApplicationController
+  enable :sessions
+  register Sinatra::Flash
 
   get '/signup' do
     erb :'board-members/create_board_member'
@@ -14,7 +19,6 @@ class BoardMemberController < ApplicationController
         if !Member.find_by(name: @user.name)
           Member.create(name: @user.name, email: @user.email, phone: @user.phone)
         end
-
         redirect "/board-members/#{@user.slug}"
       else
         redirect '/signup'
@@ -35,6 +39,7 @@ class BoardMemberController < ApplicationController
       session[:user_id] = @user.id
       redirect "/board-members/#{@user.slug}"
     else
+      flash[:message] = "Could not log you in with that information"
       redirect '/login'
     end
   end
@@ -63,6 +68,7 @@ class BoardMemberController < ApplicationController
       @user = current_user
       erb :'/board-members/edit'
     else
+      flash[:message] = "You do not have permission"
       redirect '/board-members'
     end
   end
@@ -74,7 +80,8 @@ class BoardMemberController < ApplicationController
       user.update(params[:board_member])
       redirect "/board-members/#{user.slug}"
     else
-      redirect "/board-members/#{params[:slug]/edit}"
+      flash[:message] = "Something went wrong"
+      redirect "/board-members/#{params[:slug]}/edit"
     end
   end
 
@@ -84,6 +91,8 @@ class BoardMemberController < ApplicationController
       @committees = Committee.all
       erb:'/board-members/edit_committees'
     else
+      flash[:message] = "You do not have permission"
+
       redirect '/login'
     end
   end
@@ -101,6 +110,7 @@ class BoardMemberController < ApplicationController
       user.save
       redirect "/board-members/#{user.slug}"
     else
+      flash[:message] = "You do not have permission"
       redirect '/board-members/show_board_member'
     end
   end
@@ -111,6 +121,7 @@ class BoardMemberController < ApplicationController
       session.clear
       redirect '/'
     else
+      flash[:message] = "You do not have permission"
       redirect '/login'
     end
   end

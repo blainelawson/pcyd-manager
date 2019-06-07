@@ -4,7 +4,7 @@ class BoardMember < ActiveRecord::Base
   validates :phone, presence: true
   validates :email, presence: true
   validates :password, presence: true
-  validates :name, uniqueness: true
+  validates :email, uniqueness: true
   has_secure_password
 
   def slug

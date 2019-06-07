@@ -49,4 +49,13 @@ class MemberController < ApplicationController
       redirect '/login'
     end
   end
+
+  delete '/members/:slug/delete' do
+    if logged_in?
+      Member.find_by_slug(params[:slug]).delete
+      redirect '/members'
+    else
+      redirect '/members'
+    end
+  end
 end

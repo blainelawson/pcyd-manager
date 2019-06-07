@@ -8,3 +8,8 @@
   <p><label for="password">Please reenter your password: </label><input type="password" id="password" name="board_member[password]"></p>
   <input type="submit" id="Save Changes" value="Save Changes">
 </form>
+<p>
+  <form method="post" action="/board-members/<%=@user.slug%>/delete">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+    <input type="submit" id="delete" value="Delete Yourself!">
+  </form>

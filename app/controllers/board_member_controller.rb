@@ -11,6 +11,10 @@ class BoardMemberController < ApplicationController
       session[:user_id] = @user.id
 
       if logged_in?
+        if !Member.find_by(name: @user.name)
+          Member.create(name: @user.name, email: @user.email, phone: @user.phone)
+        end
+
         redirect "/board-members/#{@user.slug}"
       else
         redirect '/signup'
@@ -98,6 +102,16 @@ class BoardMemberController < ApplicationController
       redirect "/board-members/#{user.slug}"
     else
       redirect '/board-members/show_board_member'
+    end
+  end
+
+  delete '/board-members/:slug/delete' do
+    if logged_in? && current_user == BoardMember.find_by_slug(params[:slug])
+      BoardMember.find_by_slug(params[:slug]).delete
+      session.clear
+      redirect '/'
+    else
+      redirect '/login'
     end
   end
 

@@ -29,4 +29,13 @@ class CommitteeController < ApplicationController
       redirect '/committees'
     end
   end
+
+  delete '/committees/:slug/delete' do
+    if logged_in? && current_user == Committee.find_by_slug(params[:slug]).board_member
+      Committee.find_by_slug(params[:slug]).delete
+      redirect '/committees'
+    else
+      redirect '/committees'
+    end
+  end
 end

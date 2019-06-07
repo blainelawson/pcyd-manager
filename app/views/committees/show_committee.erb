@@ -1,4 +1,7 @@
 <h2><%=@committee.name%></h2>
+<%if logged_in? && current_user == @committee.board_member%>
+  <a href="/committees/<%=@committee.slug%>/edit">Add members</a>
+<%end%>
   <%@committee.members.each do |member|%>
     <p>
       <ul class="contact">

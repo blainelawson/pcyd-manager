@@ -2,9 +2,10 @@
 <%if logged_in?%>
   <i>Click any member to edit their info</i><br>
   <a href="/members/new">Create New Members</a>
+  <br>
+  <br>
 <%end%>
-<br>
-<br>
+
 <ul style="list-style-type:none;">
   <%@members.sort_by{|k| k[:name]}.each do |member|%>
     <li><%if logged_in?%><a href="/members/<%=member.slug%>"><%end%><%=member.name%></a></li>

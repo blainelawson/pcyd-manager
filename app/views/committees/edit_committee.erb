@@ -8,3 +8,9 @@
   <%end%>
   <input type="submit" id="Update Committee" value="Update Committee">
 </form>
+<p>
+<form method="post" action="/committees/<%=@committee.slug%>/delete">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <input type="submit" id="delete" value="Delete Committee">
+</form>
+</p>

@@ -1,9 +1,6 @@
-require 'sinatra/flash'
-require 'sinatra/base'
+
 
 class BoardMemberController < ApplicationController
-  enable :sessions
-  register Sinatra::Flash
 
   get '/signup' do
     erb :'board-members/create_board_member'
@@ -33,7 +30,7 @@ class BoardMemberController < ApplicationController
   end
 
   post '/login' do
-    @user = BoardMember.find_by(name: params[:name])
+    @user = BoardMember.find_by(email: params[:email])
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
@@ -64,13 +61,10 @@ class BoardMemberController < ApplicationController
   end
 
   get '/board-members/:slug/edit' do
-    if logged_in? && current_user == BoardMember.find_by_slug(params[:slug])
+      not_logged_in_and_current_user
+
       @user = current_user
       erb :'/board-members/edit'
-    else
-      flash[:message] = "You do not have permission"
-      redirect '/board-members'
-    end
   end
 
   patch '/board-members/:slug' do
@@ -98,8 +92,9 @@ class BoardMemberController < ApplicationController
   end
 
   patch '/board-members/:slug/committees' do
-    if logged_in? && current_user == BoardMember.find_by_slug(params[:slug])
-      user = BoardMember.find_by_slug(params[:slug])
+    user = BoardMember.find_by_slug(params[:slug])
+
+    if logged_in? && current_user == user
       user.committee_ids = params[:committees]
 
       if !params[:new_committee].empty? && !Committee.find_by(name: params[:new_committee])
@@ -116,8 +111,10 @@ class BoardMemberController < ApplicationController
   end
 
   delete '/board-members/:slug/delete' do
-    if logged_in? && current_user == BoardMember.find_by_slug(params[:slug])
-      BoardMember.find_by_slug(params[:slug]).delete
+    board_member = BoardMember.find_by_slug(params[:slug])
+
+    if logged_in? && current_user == board_member
+      board_member.delete
       session.clear
       redirect '/'
     else

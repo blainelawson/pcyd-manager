@@ -1,6 +1,9 @@
 require './config/environment'
+require 'sinatra/flash'
+require 'sinatra/base'
 
 class ApplicationController < Sinatra::Base
+  register Sinatra::Flash
 
   configure do
     set :public_folder, 'public'
@@ -21,6 +24,13 @@ class ApplicationController < Sinatra::Base
 
       def logged_in?
         !!session[:user_id]
+      end
+
+      def not_logged_in_and_current_user
+        if !logged_in? || current_user != BoardMember.find_by_slug(params[:slug])
+          flash[:message] = "You do not have permission"
+          redirect '/login'
+        end
       end
     end
 end
